@@ -9,14 +9,14 @@
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script>
       // YOU DO NOT NEED TO EDIT THIS CODE
-      // if (!/(&|\?)username=/.test(window.location.search)) {
-      //   var newSearch = window.location.search;
-      //   if (newSearch !== '' & newSearch !== '?') {
-      //     newSearch += '&';
-      //   }
-      //   newSearch += 'username=' + (prompt('What is your name?') || 'anonymous');
-      //   window.location.search = newSearch;
-      // }
+      if (!/(&|\?)username=/.test(window.location.search)) {
+        var newSearch = window.location.search;
+        if (newSearch !== '' & newSearch !== '?') {
+          newSearch += '&';
+        }
+        newSearch += 'username=' + (prompt('What is your name?') || 'anonymous');
+        window.location.search = newSearch;
+      }
 
       
       
@@ -30,13 +30,17 @@
   <body>
     <div id="main">
       <h1>chatterbox</h1>
+         <select id = "roomSelect1">
+          <!--  <option class = "existingRoom" value = "lobby">Lobby</option> -->
+         </select>
+          <button type = "submit" class = "addRoom">Add New Room</button>
       <!-- Your HTML goes here! -->
 
     </div>
     <div id="chats">
-    <form> <!-- need to add a class -->
-      <input type="text" name="message"/>
-        <button type = "submit" class = "sendMessage">submit</button>
+    <form> 
+       <input type="text" name="message"/>
+       <button type = "submit" id="send" class = "submit">submit</button>
     </form>
 
     </div>

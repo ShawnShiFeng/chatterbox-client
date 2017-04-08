@@ -88,3 +88,15 @@ form input[type=text] {
     background-color: #0090da;
 }
 
+.messageBox {
+
+    background-color: lightgray;
+ 
+    margin: 30 30 30 30;
+    padding: 30 30 30 30;
+}
+
+.name {
+    color: white;
+    text-align: right;
+}
