@@ -59,6 +59,11 @@ var app = {
 		console.log('hi');
         app.handleUsernameClick();
 	});
+
+	
+	// setInterval( function() {
+	// 	app.clearMessages();
+	// 	app.fetch();}, 10000);
   },
   
   send: message => {
@@ -69,6 +74,7 @@ var app = {
 	  contentType: 'application/json',
 	  success: function (data) {
 	    console.log('chatterbox: Message sent');
+	    window.location.reload(false);
 	  },
 	  error: function (data) {
 	    console.error('chatterbox: Failed to send message', data);
