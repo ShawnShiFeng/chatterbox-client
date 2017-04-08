@@ -1,25 +1,31 @@
-var app = {
-  server: 'http://parse.sfm6.hackreactor.com/',
+$(document).ready(function() {
+  app.init();
+});
 
+var app = {
+
+  server: 'http://parse.sfm6.hackreactor.com/chatterbox/classes/messages',
+  
   init: () => {
-  	$(document).ready(function() {
+  	
 	  app.fetch();
-		
+
 	  $('.sendMessage').on('click', function(event) {
 	  	event.preventDefault();
-	    var message = $('input[name=message]').val();
-	    //debugger;
-	    app.renderMessage(message);
-	    //debugger;
-		console.log(message);
-		//debugger;
+	    var text = $('input[name=message]').val();
+	    var message = {
+	      username: undefined,
+	      text: text,
+	      room: undefined
+	    }
+	    app.send(message);
+	    $('form')[0].reset();
 	  })
-    });
   },
-
+  
   send: message => {
 	$.ajax({
-	  url: 'http://parse.sfm6.hackreactor.com/',
+	  url: app.server,
 	  type: 'POST',
 	  data: JSON.stringify(message),
 	  contentType: 'application/json',
@@ -34,10 +40,15 @@ var app = {
 
   fetch: () => {
 	$.ajax({
-	  url: 'http://parse.sfm6.hackreactor.com/',
+	  url: app.server,
 	  type: 'GET',
+	  data: {order :'-createdAt'},
 	  contentType: 'application/json',
 	  success: function (data) {
+	  	var messageArray = data.results;
+	  	messageArray.forEach(function(x) {
+	  	  app.renderMessage(x.text);
+	  	});
 	    console.log('chatterbox: Message received');
 	  },
 	  error: function (data) {
@@ -53,7 +64,7 @@ var app = {
   renderMessage: message => {
   	var $message = $('<div>'+ message +'</div>')
     $('#chats').append($message);
-    $('form')[0].reset()
+    $('form')[0].reset();
   },
 
   renderRoom: () => {
