@@ -47,7 +47,8 @@ var app = {
 	  success: function (data) {
 	  	var messageArray = data.results;
 	  	messageArray.forEach(function(x) {
-	  	  app.renderMessage(x.text);
+	      //var sanitized = escape(x.text);
+	  	  app.renderMessage(x);
 	  	});
 	    console.log('chatterbox: Message received');
 	  },
@@ -62,15 +63,48 @@ var app = {
   },
 
   renderMessage: message => {
-  	var $message = $('<div>'+ message +'</div>')
-    $('#chats').append($message);
+  	var text = message.text;
+
+  	var $message = $('<div class="message">'+ text +'</div>')
+  	text = $message.text();
+  	var $text = $('<div class="message">'+ text +'</div>');
+
+    $('#chats').append($text);
     $('form')[0].reset();
   },
 
   renderRoom: () => {
 
-  }
+  },
 
+ //  escaple: (fetchedText) => {
+ //  	//fetchedText.replace(/%20/g, ' ').replace(/%21/g,' ').replace(/%29/g,' ').replace(/%20/g, ' ').replace(/%21/g,' ').replace(/%29/g,' ')
+ //  	var specialChars = {
+ //  		'&': '&#38;',
+	//     '<': '&#60;',
+	//     '>': '&#62;',
+	//     '\"': '&#34;',
+	//     '\'': '&#39;',
+	//     '`': '&#96;',
+	//     ',': '&#44;',
+	//     '!': '&#33;',
+	//     '@': '&#64;',
+	//     '$': '&#36;',
+	//     '%': '&#37;',
+	//     '(': '&#40;',
+	//     ')': '&#41;',
+	//     '=': '&#61;',
+	//     '+': '&#43;',
+	//     '{': '&#123;',
+	//     '}': '&#125;',
+	//     '[': '&#91;',
+	//     ']': '&#93;'
+	// }
+ //  	for (var i = 0; i < fetchedText.length; i++) {
+ //      if (fetchedText[i])
+
+ //  	}
+ //  }
 
 
 
