@@ -29,20 +29,19 @@
   </head>
   <body>
     <div id="main">
-      <h1>chatterbox</h1>
-         <select id = "roomSelect1">
-          <!--  <option class = "existingRoom" value = "lobby">Lobby</option> -->
+      <h1><span>Secret Gossip Channel</span></h1>
+         <select id = "roomSelect">
          </select>
-          <button type = "submit" class = "addRoom">Add New Room</button>
+         <button type = "submit" class = "addRoom">Add New Room</button>
+
+         <form> 
+            <input type="text" name="message"/>
+            <button type = "submit" id="send" class = "submit">submit</button>
+         </form>
       <!-- Your HTML goes here! -->
 
     </div>
     <div id="chats">
-    <form> 
-       <input type="text" name="message"/>
-       <button type = "submit" id="send" class = "submit">submit</button>
-    </form>
-
     </div>
   </body>
 </html>
